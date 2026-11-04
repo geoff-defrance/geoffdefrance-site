@@ -1,0 +1,60 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Cta from '../../components/Cta.astro';
+import { bookingHref, SITE } from '../../site.config';
+import { ld, faqPage } from '../../lib/schema';
+
+export async function getStaticPaths() {
+  const services = await getCollection('services');
+  return services.map((s) => ({ params: { slug: s.id }, props: { entry: s } }));
+}
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const d = entry.data;
+const external = bookingHref.startsWith('http');
+const service = ld({
+  '@type': 'Service',
+  name: d.serviceType,
+  description: d.description,
+  serviceType: d.serviceType,
+  provider: { '@id': `${SITE.url}/#person`, '@type': 'Person', name: SITE.name },
+  areaServed: 'Worldwide',
+  url: new URL(Astro.url.pathname, SITE.url).href,
+  ...(d.price ? { offers: { '@type': 'Offer', price: d.price, priceCurrency: 'USD', description: `From $${d.price.toLocaleString('en-US')}, fixed fee` } } : {}),
+});
+const schema = d.faqs.length ? [service, faqPage(d.faqs)] : [service];
+---
+<Base title={d.seoTitle} description={d.description} schema={schema}>
+  <section class="wrap page-hero">
+    <p class="label"><a href="/services/">Services</a> · {d.serviceType}</p>
+    <h1>{d.title}</h1>
+    <p class="lede">{d.subhead}</p>
+    <div class="actions">
+      <a class="btn" href={bookingHref} {...(external ? { target: '_blank', rel: 'noopener' } : {})}>Book a 30-minute call</a>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap"><div class="prose"><Content /></div></div>
+  </section>
+  {d.faqs.length > 0 && (
+    <section class="section section--alt" aria-labelledby="faq">
+      <div class="wrap measure">
+        <h2 id="faq">Questions</h2>
+        <dl class="faq">
+          {d.faqs.map((f) => (<><dt>{f.q}</dt><dd>{f.a}</dd></>))}
+        </dl>
+      </div>
+    </section>
+  )}
+  <Cta headline="Tell me which number won't move." body="A 30-minute call is enough to know whether a diagnostic, a fractional engagement or neither is the right fit." />
+</Base>
+<style>
+  .page-hero { padding-top: 96px; padding-bottom: 72px; }
+  .page-hero h1 { max-width: 900px; margin-bottom: 28px; }
+  .page-hero .label a { color: inherit; }
+  #faq { margin-bottom: 32px; }
+  .faq dt { font-weight: 600; margin-top: 28px; }
+  .faq dd { margin: 6px 0 0; color: var(--color-text-muted); }
+  @media (max-width: 640px) { .page-hero { padding-top: 56px; padding-bottom: 48px; } }
+</style>

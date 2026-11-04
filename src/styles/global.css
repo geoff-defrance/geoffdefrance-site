@@ -1,0 +1,143 @@
+/* Design tokens: Editorial Operator, with Data Report proof numerals.
+   Change a color or font here and the whole site follows. */
+:root {
+  --color-bg: #F7F4EE;
+  --color-bg-alt: #F2EEE5;
+  --color-text: #1C1B19;
+  --color-text-muted: #5E5A52;
+  --color-accent: #7A1F2B;
+  --color-accent-hover: #5A1520;
+  --color-rule: #C9B99A;
+  --color-inverse-bg: #1C1B19;
+  --color-inverse-text: #F7F4EE;
+  --color-inverse-muted: #D9D3C7;
+
+  --font-display: 'Fraunces Variable', Georgia, 'Times New Roman', serif;
+  --font-body: 'Inter Variable', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --measure: 680px;
+  --wide: 1120px;
+  --radius: 2px;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 40px;
+  --space-6: 64px;
+  --space-7: 104px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+
+a { color: var(--color-accent); text-underline-offset: 4px; }
+a:hover { color: var(--color-accent-hover); }
+
+:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 3px; }
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.12;
+  margin: 0;
+  text-wrap: balance;
+}
+h1 { font-size: clamp(2.5rem, 5.5vw, 4.5rem); letter-spacing: -0.025em; }
+h2 { font-size: clamp(1.9rem, 3.4vw, 2.75rem); }
+h3 { font-size: 1.6rem; line-height: 1.2; }
+
+p { margin: 0 0 1em; }
+
+.wrap { max-width: var(--wide); margin: 0 auto; padding: 0 32px; }
+.measure { max-width: var(--measure); }
+
+.label {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin: 0 0 var(--space-3);
+}
+.label--accent { color: var(--color-accent); }
+
+.lede { font-size: 1.2rem; line-height: 1.55; color: var(--color-text-muted); max-width: var(--measure); }
+.muted { color: var(--color-text-muted); }
+
+.section { padding: var(--space-7) 0; border-top: 1px solid var(--color-rule); }
+.section--alt { background: var(--color-bg-alt); }
+.section--first { border-top: 0; }
+
+.btn {
+  display: inline-block;
+  padding: 15px 24px;
+  border-radius: var(--radius);
+  background: var(--color-accent);
+  color: #fff;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 1.2;
+  text-decoration: none;
+  border: 0;
+  cursor: pointer;
+}
+.btn:hover { background: var(--color-accent-hover); color: #fff; }
+.btn--light { background: var(--color-inverse-text); color: var(--color-text); font-weight: 600; }
+.btn--light:hover { background: #fff; color: var(--color-text); }
+.textlink { color: var(--color-text); font-weight: 500; }
+.textlink:hover { color: var(--color-accent); }
+
+.actions { display: flex; flex-wrap: wrap; align-items: center; gap: 28px; margin-top: var(--space-5); }
+
+.grid { display: grid; gap: var(--space-5); grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); }
+
+.numeral {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(2.6rem, 5vw, 3.75rem);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--color-accent);
+}
+
+/* Long-form content from Markdown (case studies, service pages, about) */
+.prose { max-width: var(--measure); }
+.prose h2 { font-size: 2rem; margin: var(--space-6) 0 var(--space-3); }
+.prose h3 { font-size: 1.35rem; margin: var(--space-5) 0 var(--space-2); }
+.prose ul, .prose ol { padding-left: 1.2em; margin: 0 0 1.2em; }
+.prose li { margin-bottom: 0.5em; }
+.prose strong { font-weight: 600; }
+.prose table { width: 100%; border-collapse: collapse; margin: 0 0 1.5em; font-size: 16px; }
+.prose th, .prose td { text-align: left; vertical-align: top; padding: 10px 12px 10px 0; border-bottom: 1px solid var(--color-rule); }
+.prose blockquote { margin: var(--space-5) 0; padding-left: 24px; border-left: 2px solid var(--color-accent); }
+.prose blockquote p { font-family: var(--font-display); font-style: italic; font-size: 1.45rem; line-height: 1.4; }
+
+.skip { position: absolute; left: -9999px; }
+.skip:focus { left: 16px; top: 16px; background: #fff; padding: 8px 12px; z-index: 10; }
+
+@media (max-width: 640px) {
+  body { font-size: 17px; }
+  .wrap { padding: 0 20px; }
+  .section { padding: var(--space-6) 0; }
+}
+
+/* Keep narrow text columns aligned with page headings on the left edge */
+.wrap.measure { max-width: var(--wide); }
+.wrap.measure > * { max-width: var(--measure); }
+.prose > :first-child { margin-top: 0; }

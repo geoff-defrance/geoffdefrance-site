@@ -1,0 +1,52 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE } from '../site.config';
+import { ld, person } from '../lib/schema';
+
+const schema = ld({ '@type': 'ContactPage', url: `${SITE.url}/contact/`, mainEntity: { ...person, email: SITE.email } });
+const subject = encodeURIComponent('Intro call');
+const body = encodeURIComponent('Name:\nCompany:\nRole:\nInterested in (fractional leadership / audience and monetization diagnostic / something else):\n\nWhat is going on:\n');
+---
+<Base title="Contact Geoff DeFrance | Book a Call" description="Book a 30-minute call about fractional product leadership or a fixed-fee diagnostic, or send a message. Based in Nashville, Tennessee." schema={schema}>
+  <section class="wrap page-hero">
+    <h1>Let's talk</h1>
+    <p class="lede">A 30-minute call is the fastest way to find out whether I can help. Tell me a little about your business and which number won't move.</p>
+  </section>
+
+  <section class="section">
+    <div class="wrap contact">
+      <div class="booking">
+        <h2>Book a 30-minute call</h2>
+        {SITE.calendlyUrl ? (
+          <>
+            <div class="calendly-inline-widget" data-url={`${SITE.calendlyUrl}?hide_gdpr_banner=1&background_color=f7f4ee&text_color=1c1b19&primary_color=7a1f2b`} style="min-width:280px;height:700px;"></div>
+            <script is:inline src="https://assets.calendly.com/assets/external/widget.js" async></script>
+          </>
+        ) : (
+          <p class="muted">Online booking is coming soon. Until then, email me and I'll send times that work.</p>
+        )}
+      </div>
+      <aside class="other">
+        <h2>Or send a note</h2>
+        <p>Tell me your name, company, role, what you're interested in and what's going on. I reply within one business day.</p>
+        <p><a class="btn" href={`mailto:${SITE.email}?subject=${subject}&body=${body}`}>Email {SITE.email}</a></p>
+        <dl>
+          <div><dt>LinkedIn</dt><dd><a href={SITE.linkedin} rel="me noopener" target="_blank">linkedin.com/in/geoffdefrance</a></dd></div>
+          <div><dt>Location</dt><dd>Nashville, Tennessee. Working with companies anywhere.</dd></div>
+        </dl>
+      </aside>
+    </div>
+  </section>
+</Base>
+<style>
+  .page-hero { padding-top: 96px; padding-bottom: 56px; }
+  .page-hero h1 { margin-bottom: 24px; }
+  .contact { display: grid; gap: 64px; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); }
+  h2 { font-size: 1.75rem; margin-bottom: 20px; }
+  .btn { word-break: break-word; }
+  dl { margin: 32px 0 0; border-top: 1px solid var(--color-rule); }
+  dl div { padding: 12px 0; border-bottom: 1px solid var(--color-rule); font-size: 16px; }
+  dt { font-weight: 600; }
+  dd { margin: 2px 0 0; }
+  @media (max-width: 860px) { .contact { grid-template-columns: 1fr; } .page-hero { padding-top: 56px; } }
+</style>

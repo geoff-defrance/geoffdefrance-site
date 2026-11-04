@@ -1,0 +1,87 @@
+---
+import '@fontsource-variable/fraunces';
+import '@fontsource-variable/inter';
+import '../styles/global.css';
+import { SITE, bookingHref } from '../site.config';
+
+interface Props {
+  title: string;
+  description: string;
+  schema?: object | object[];
+  ogType?: 'website' | 'article';
+}
+const { title, description, schema, ogType = 'website' } = Astro.props;
+const canonical = new URL(Astro.url.pathname, SITE.url).href;
+const ogImage = new URL('/images/og-default.png', SITE.url).href;
+const schemas = schema ? (Array.isArray(schema) ? schema : [schema]) : [];
+const path = Astro.url.pathname;
+const nav = [
+  { href: '/services/', label: 'Services' },
+  { href: '/work/', label: 'Work' },
+  { href: '/about/', label: 'About' },
+];
+const external = bookingHref.startsWith('http');
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#F7F4EE" />
+    {schemas.map((s) => <script type="application/ld+json" set:html={JSON.stringify(s)} />)}
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <header class="site-header">
+      <nav class="wrap site-nav" aria-label="Main">
+        <a class="brand" href="/">Geoff DeFrance</a>
+        <div class="nav-links">
+          {nav.map((n) => (
+            <a href={n.href} aria-current={path.startsWith(n.href) ? 'page' : undefined}>{n.label}</a>
+          ))}
+          <a class="btn btn--small" href={bookingHref} {...(external ? { target: '_blank', rel: 'noopener' } : {})}>Book a call</a>
+        </div>
+      </nav>
+    </header>
+    <main id="main">
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <div class="wrap footer-inner">
+        <span>© {new Date().getFullYear()} {SITE.name} · {SITE.location}</span>
+        <span class="footer-links">
+          <a href={SITE.linkedin} rel="me noopener" target="_blank">LinkedIn</a>
+          <a href={`mailto:${SITE.email}`}>Email</a>
+          <a href="/privacy/">Privacy</a>
+        </span>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<style>
+  .site-header { border-bottom: 1px solid var(--color-rule); }
+  .site-nav { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; padding-top: 18px; padding-bottom: 18px; }
+  .brand { font-family: var(--font-display); font-weight: 600; font-size: 22px; letter-spacing: -0.01em; color: var(--color-text); text-decoration: none; }
+  .nav-links { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 28px; font-size: 16px; }
+  .nav-links a:not(.btn) { color: var(--color-text); text-decoration: none; }
+  .nav-links a:not(.btn):hover, .nav-links a[aria-current='page'] { color: var(--color-accent); text-decoration: underline; }
+  .btn--small { padding: 11px 18px; font-size: 16px; }
+  .site-footer { border-top: 1px solid var(--color-rule); }
+  .footer-inner { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; padding-top: 32px; padding-bottom: 32px; font-size: 14px; color: var(--color-text-muted); }
+  .footer-links { display: flex; gap: 24px; }
+  .footer-links a { color: var(--color-text-muted); }
+  @media (max-width: 640px) { .nav-links { gap: 8px 20px; } }
+</style>

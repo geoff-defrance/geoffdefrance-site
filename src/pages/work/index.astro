@@ -1,0 +1,59 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Cta from '../../components/Cta.astro';
+import WorkCard from '../../components/WorkCard.astro';
+import { ld } from '../../lib/schema';
+import { SITE } from '../../site.config';
+
+const work = (await getCollection('work')).sort((a, b) => a.data.order - b.data.order);
+const industries = [...new Set(work.flatMap((w) => w.data.industry))];
+const capabilities = [...new Set(work.flatMap((w) => w.data.capability))];
+const schema = ld({
+  '@type': 'CollectionPage',
+  name: 'Case studies',
+  url: `${SITE.url}/work/`,
+  hasPart: work.map((w) => ({ '@type': 'Article', headline: w.data.title, url: `${SITE.url}/work/${w.id}/` })),
+});
+---
+<Base title="Case Studies | Geoff DeFrance" description="Case studies in subscription growth, ad-supported media, eCommerce conversion and AI-native delivery: Motor Trend OnDemand, Motor Trend super-sites, Kinetic and Olivia Olive Oil." schema={schema}>
+  <section class="wrap page-hero">
+    <h1>Work</h1>
+    <p class="lede">Four projects, each with the problem, what I did and the measured result.</p>
+    <div class="filters" role="group" aria-label="Filter case studies">
+      <button type="button" class="chip" aria-pressed="true" data-filter="all">All</button>
+      {industries.map((t) => <button type="button" class="chip" aria-pressed="false" data-filter={t}>{t}</button>)}
+      {capabilities.map((t) => <button type="button" class="chip" aria-pressed="false" data-filter={t}>{t}</button>)}
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap grid work-grid">
+      {work.map((w) => (
+        <div class="work-item" data-tags={[...w.data.industry, ...w.data.capability].join('|')}>
+          <WorkCard href={`/work/${w.id}/`} label={w.data.industry.join(' · ')} title={w.data.cardTitle} summary={w.data.summary} metric={w.data.metric} metricLabel={w.data.metricLabel} headingLevel="h2" />
+          <p class="tags">{w.data.capability.join(' · ')}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+  <Cta headline="Have a similar problem?" />
+</Base>
+<script>
+  const chips = document.querySelectorAll<HTMLButtonElement>('.chip');
+  const items = document.querySelectorAll<HTMLElement>('.work-item');
+  chips.forEach((chip) => chip.addEventListener('click', () => {
+    const f = chip.dataset.filter!;
+    chips.forEach((c) => c.setAttribute('aria-pressed', String(c === chip)));
+    items.forEach((it) => { it.hidden = f !== 'all' && !(it.dataset.tags || '').split('|').includes(f); });
+  }));
+</script>
+<style>
+  .page-hero { padding-top: 96px; padding-bottom: 56px; }
+  .page-hero h1 { margin-bottom: 24px; }
+  .filters { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px; }
+  .chip { font: inherit; font-size: 14px; padding: 8px 14px; min-height: 44px; border: 1px solid var(--color-rule); border-radius: 999px; background: transparent; color: var(--color-text); cursor: pointer; }
+  .chip[aria-pressed='true'] { background: var(--color-text); color: var(--color-bg); border-color: var(--color-text); }
+  .work-grid { row-gap: 64px; }
+  .tags { margin: 12px 0 0; font-size: 13px; color: var(--color-text-muted); }
+  @media (max-width: 640px) { .page-hero { padding-top: 56px; } }
+</style>

@@ -1,0 +1,36 @@
+---
+import { getEntry, render } from 'astro:content';
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Cta from '../components/Cta.astro';
+import headshot from '../assets/geoff-defrance.jpg';
+import { ld, person } from '../lib/schema';
+import { SITE } from '../site.config';
+
+const entry = (await getEntry('pages', 'about'))!;
+const { Content } = await render(entry);
+const schema = ld({ '@type': 'ProfilePage', mainEntity: person, url: `${SITE.url}/about/` });
+---
+<Base title={entry.data.seoTitle} description={entry.data.description} schema={schema}>
+  <section class="wrap page-hero">
+    <div class="intro">
+      <Image src={headshot} alt="Geoff DeFrance" width={360} height={360} widths={[360, 720]} sizes="(max-width: 640px) 240px, 360px" class="headshot" loading="eager" />
+      <div>
+        <h1>{entry.data.title}</h1>
+        <p class="lede">Product and technology leader for subscription, media and eCommerce businesses. <a href={SITE.linkedin} rel="me noopener" target="_blank">LinkedIn profile</a></p>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap"><div class="prose"><Content /></div></div>
+  </section>
+  <Cta headline="Tell me which number won't move." body="A 30-minute call is enough to know whether a diagnostic, a fractional engagement or neither is the right fit." />
+</Base>
+<style>
+  .page-hero { padding-top: 96px; padding-bottom: 72px; }
+  .intro { display: flex; flex-wrap: wrap; align-items: center; gap: 48px; }
+  .intro > div { flex: 999 1 420px; min-width: 0; }
+  .intro h1 { margin-bottom: 20px; }
+  .headshot { flex: 0 0 360px; width: 360px; height: 360px; object-fit: cover; }
+  @media (max-width: 640px) { .page-hero { padding-top: 48px; } .headshot { flex-basis: 240px; width: 240px; height: 240px; } }
+</style>

@@ -1,0 +1,125 @@
+# Pages CMS configuration (https://pagescms.org). Sign in at app.pagescms.org with GitHub
+# and open this repository to edit text and images in a web editor. Each save is a commit,
+# and Cloudflare Pages redeploys the site automatically.
+media:
+  input: public/images
+  output: /images
+
+content:
+  - name: home
+    label: Home page
+    type: file
+    path: src/content/pages/home.md
+    fields:
+      - { name: seoTitle, label: Browser tab and Google title, type: string }
+      - { name: description, label: Google description, type: text }
+      - { name: eyebrow, label: Small line above the headline, type: string }
+      - { name: title, label: Headline, type: string }
+      - { name: subhead, label: Subhead, type: text }
+      - name: proof
+        label: Results bar
+        type: object
+        list: true
+        fields:
+          - { name: figure, label: Big number, type: string }
+          - { name: lead, label: Bold lead-in, type: string }
+          - { name: detail, label: Detail, type: string }
+      - { name: previouslyAt, label: Previously at, type: string }
+      - name: ways
+        label: Three ways to work together
+        type: object
+        list: true
+        fields:
+          - { name: label, label: Label, type: string }
+          - { name: title, label: Title, type: string }
+          - { name: body, label: Text, type: text }
+          - { name: linkLabel, label: Link text, type: string }
+          - { name: linkHref, label: Link address, type: string }
+      - { name: featured, label: Featured case studies (file names), type: string, list: true }
+      - name: how
+        label: How I work
+        type: object
+        list: true
+        fields:
+          - { name: title, label: Title, type: string }
+          - { name: body, label: Text, type: text }
+      - name: testimonial
+        label: Testimonial
+        type: object
+        fields:
+          - { name: text, label: Quote, type: text }
+          - { name: attribution, label: Attribution, type: string }
+      - { name: aboutHeadline, label: About teaser headline, type: string }
+      - { name: aboutBody, label: About teaser text, type: text }
+      - { name: ctaHeadline, label: Closing headline, type: string }
+      - { name: ctaBody, label: Closing text, type: text }
+
+  - name: about
+    label: About page
+    type: file
+    path: src/content/pages/about.md
+    fields:
+      - { name: title, label: Headline, type: string }
+      - { name: seoTitle, label: Browser tab and Google title, type: string }
+      - { name: description, label: Google description, type: text }
+      - { name: body, label: Page text, type: rich-text }
+
+  - name: services
+    label: Service pages
+    type: collection
+    path: src/content/services
+    view: { fields: [serviceType, title] }
+    fields:
+      - { name: serviceType, label: Service name, type: string }
+      - { name: title, label: Headline, type: string }
+      - { name: subhead, label: Subhead, type: text }
+      - { name: seoTitle, label: Browser tab and Google title, type: string }
+      - { name: description, label: Google description, type: text }
+      - { name: order, label: Sort order, type: number }
+      - { name: price, label: Starting price in dollars (blank if not shown), type: number }
+      - name: faqs
+        label: Questions
+        type: object
+        list: true
+        fields:
+          - { name: q, label: Question, type: string }
+          - { name: a, label: Answer, type: text }
+      - { name: body, label: Page text, type: rich-text }
+
+  - name: work
+    label: Case studies
+    type: collection
+    path: src/content/work
+    view: { fields: [cardTitle] }
+    fields:
+      - { name: title, label: Headline, type: string }
+      - { name: seoTitle, label: Browser tab and Google title, type: string }
+      - { name: description, label: Google description, type: text }
+      - { name: order, label: Sort order, type: number }
+      - { name: cardTitle, label: Card title, type: string }
+      - { name: summary, label: Card summary, type: text }
+      - { name: metric, label: Big number, type: string }
+      - { name: metricLabel, label: Big number caption, type: string }
+      - { name: industry, label: Industry tags, type: string, list: true }
+      - { name: capability, label: Capability tags, type: string, list: true }
+      - name: glance
+        label: At a glance
+        type: object
+        list: true
+        fields:
+          - { name: label, label: Label, type: string }
+          - { name: value, label: Value, type: string }
+      - name: quote
+        label: Quote
+        type: object
+        fields:
+          - { name: text, label: Quote, type: text }
+          - { name: attribution, label: Attribution, type: string }
+      - { name: ctaHeadline, label: Closing headline, type: string }
+      - name: ctaSecondary
+        label: Second closing link
+        type: object
+        fields:
+          - { name: label, label: Link text, type: string }
+          - { name: href, label: Link address, type: string }
+      - { name: body, label: Page text, type: rich-text }

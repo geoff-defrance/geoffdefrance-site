@@ -1,0 +1,135 @@
+---
+import { getEntry, getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Cta from '../components/Cta.astro';
+import WorkCard from '../components/WorkCard.astro';
+import headshot from '../assets/geoff-defrance.jpg';
+import { bookingHref } from '../site.config';
+import { ld, person, business } from '../lib/schema';
+
+const home = (await getEntry('pages', 'home'))!;
+const d = home.data as any;
+const work = await getCollection('work');
+const featured = d.featured.map((slug: string) => work.find((w) => w.id === slug)).filter(Boolean);
+const external = bookingHref.startsWith('http');
+const schema = [ld({ '@graph': [person, business] })];
+---
+<Base title={d.seoTitle} description={d.description} schema={schema}>
+  <section class="hero wrap">
+    <p class="label">{d.eyebrow}</p>
+    <h1>{d.title}</h1>
+    <p class="lede hero-sub">{d.subhead}</p>
+    <div class="actions">
+      <a class="btn" href={bookingHref} {...(external ? { target: '_blank', rel: 'noopener' } : {})}>Book a 30-minute call</a>
+      <a class="textlink" href="/work/">See the work</a>
+    </div>
+  </section>
+
+  <section class="section section--alt" aria-labelledby="results">
+    <div class="wrap">
+      <h2 id="results" class="label">Results</h2>
+      <div class="proof">
+        {d.proof.map((p: any) => (
+          <div>
+            <div class="numeral">{p.figure}</div>
+            <p class="proof-text"><strong>{p.lead}</strong> {p.detail}</p>
+          </div>
+        ))}
+      </div>
+      <p class="muted previously">Previously at {d.previouslyAt}</p>
+    </div>
+  </section>
+
+  <section class="wrap ways" aria-labelledby="ways">
+    <h2 id="ways">Three ways to work together</h2>
+    <div class="grid ways-grid">
+      {d.ways.map((w: any) => (
+        <article class="way">
+          <p class="label label--accent">{w.label}</p>
+          <h3>{w.title}</h3>
+          <p>{w.body}</p>
+          <a href={w.linkHref}>{w.linkLabel}</a>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="work">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="work">Featured work</h2>
+        <a href="/work/">All case studies</a>
+      </div>
+      <div class="grid">
+        {featured.map((w: any) => (
+          <WorkCard href={`/work/${w.id}/`} label={w.data.industry.join(' · ')} title={w.data.cardTitle} summary={w.data.summary} metric={w.data.metric} metricLabel={w.data.metricLabel} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt" aria-labelledby="how">
+    <div class="wrap">
+      <h2 id="how">How I work</h2>
+      <div class="how-grid">
+        {d.how.map((h: any) => (
+          <div>
+            <h3 class="how-title">{h.title}</h3>
+            <p class="muted">{h.body}</p>
+          </div>
+        ))}
+      </div>
+      <figure class="testimonial">
+        <blockquote><p>“{d.testimonial.text}”</p></blockquote>
+        <figcaption>{d.testimonial.attribution}</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="about">
+    <div class="wrap about">
+      <Image src={headshot} alt="Geoff DeFrance" width={300} height={300} widths={[300, 600]} sizes="300px" class="headshot" loading="lazy" />
+      <div class="about-text">
+        <h2 id="about">{d.aboutHeadline}</h2>
+        <p>{d.aboutBody}</p>
+        <a href="/about/">More about me</a>
+      </div>
+    </div>
+  </section>
+
+  <Cta headline={d.ctaHeadline} body={d.ctaBody} />
+</Base>
+
+<style>
+  .hero { padding-top: 112px; padding-bottom: 96px; }
+  .hero h1 { max-width: 920px; }
+  .hero-sub { margin-top: 32px; }
+  .proof { display: grid; gap: 40px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); }
+  .proof .numeral { font-size: clamp(2.4rem, 3.6vw, 3.25rem); white-space: nowrap; }
+  .proof-text { margin: 16px 0 0; font-size: 16px; line-height: 1.5; }
+  .proof-text strong { font-weight: 600; }
+  .previously { margin: 48px 0 0; font-size: 15px; }
+  .ways { padding-top: 104px; padding-bottom: 104px; }
+  .ways h2 { margin-bottom: 56px; }
+  .way { border-top: 2px solid var(--color-text); padding-top: 24px; }
+  .way h3 { margin: 0 0 16px; }
+  .way p { font-size: 17px; }
+  .way a { font-size: 16px; font-weight: 500; }
+  .section-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 48px; }
+  .section-head a { font-weight: 500; font-size: 16px; }
+  #how { margin-bottom: 48px; }
+  .how-grid { display: grid; gap: 40px 64px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); }
+  .how-title { font-family: var(--font-body); font-size: 18px; font-weight: 600; letter-spacing: 0; margin-bottom: 8px; }
+  .how-grid p { font-size: 17px; margin: 0; }
+  .testimonial { margin: 72px 0 0; padding-left: 28px; border-left: 2px solid var(--color-accent); max-width: 800px; }
+  .testimonial blockquote { margin: 0; }
+  .testimonial p { margin: 0; font-family: var(--font-display); font-style: italic; font-size: clamp(1.35rem, 2.4vw, 1.8rem); line-height: 1.4; }
+  .testimonial figcaption { margin-top: 16px; font-size: 15px; color: var(--color-text-muted); }
+  .about { display: flex; flex-wrap: wrap; align-items: center; gap: 56px; }
+  .headshot { flex: 0 0 300px; width: 300px; height: 300px; object-fit: cover; }
+  .about-text { flex: 999 1 420px; min-width: 0; max-width: 680px; }
+  .about-text h2 { margin-bottom: 20px; font-size: 2.25rem; }
+  .about-text a { font-weight: 500; font-size: 16px; }
+  @media (max-width: 640px) { .hero { padding-top: 64px; padding-bottom: 64px; } .ways { padding-top: 64px; padding-bottom: 64px; } .headshot { flex-basis: 220px; width: 220px; height: 220px; } }
+</style>
