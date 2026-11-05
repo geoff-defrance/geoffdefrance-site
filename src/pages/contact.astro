@@ -1,38 +1,42 @@
 ---
+import { getEntry } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import { SITE } from '../site.config';
 import { ld, person } from '../lib/schema';
 
+const page = (await getEntry('pages', 'contact'))!;
+const d = page.data as any;
 const schema = ld({ '@type': 'ContactPage', url: `${SITE.url}/contact/`, mainEntity: { ...person, email: SITE.email } });
 const subject = encodeURIComponent('Intro call');
 const body = encodeURIComponent('Name:\nCompany:\nRole:\nInterested in (fractional leadership / audience and monetization diagnostic / something else):\n\nWhat is going on:\n');
+const linkedinLabel = SITE.linkedin.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '');
 ---
-<Base title="Contact Geoff DeFrance | Book a Call" description="Book a 30-minute call about fractional product leadership or a fixed-fee diagnostic, or send a message. Based in Nashville, Tennessee." schema={schema}>
+<Base title={d.seoTitle} description={d.description} schema={schema}>
   <section class="wrap page-hero">
-    <h1>Let's talk</h1>
-    <p class="lede">A 30-minute call is the fastest way to find out whether I can help. Tell me a little about your business and which number won't move.</p>
+    <h1>{d.title}</h1>
+    <p class="lede">{d.intro}</p>
   </section>
 
   <section class="section">
     <div class="wrap contact">
       <div class="booking">
-        <h2>Book a 30-minute call</h2>
+        <h2>{d.bookingHeading}</h2>
         {SITE.calendlyUrl ? (
           <>
             <div class="calendly-inline-widget" data-url={`${SITE.calendlyUrl}?hide_gdpr_banner=1&background_color=f7f4ee&text_color=1c1b19&primary_color=7a1f2b`} style="min-width:280px;height:700px;"></div>
             <script is:inline src="https://assets.calendly.com/assets/external/widget.js" async></script>
           </>
         ) : (
-          <p class="muted">Online booking is coming soon. Until then, email me and I'll send times that work.</p>
+          <p class="muted">{d.bookingFallback}</p>
         )}
       </div>
       <aside class="other">
-        <h2>Or send a note</h2>
-        <p>Tell me your name, company, role, what you're interested in and what's going on. I reply within one business day.</p>
+        <h2>{d.noteHeading}</h2>
+        <p>{d.noteBody}</p>
         <p><a class="btn" href={`mailto:${SITE.email}?subject=${subject}&body=${body}`}>Email {SITE.email}</a></p>
         <dl>
-          <div><dt>LinkedIn</dt><dd><a href={SITE.linkedin} rel="me noopener" target="_blank">linkedin.com/in/geoffdefrance</a></dd></div>
-          <div><dt>Location</dt><dd>Nashville, Tennessee. Working with companies anywhere.</dd></div>
+          <div><dt>LinkedIn</dt><dd><a href={SITE.linkedin} rel="me noopener" target="_blank">{linkedinLabel}</a></dd></div>
+          <div><dt>Location</dt><dd>{d.locationText}</dd></div>
         </dl>
       </aside>
     </div>

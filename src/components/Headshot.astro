@@ -1,0 +1,10 @@
+---
+import { SITE } from '../site.config';
+interface Props { size: number; mobileSize?: number; eager?: boolean }
+const { size, mobileSize = 220, eager = false } = Astro.props;
+---
+<img class="headshot" src={SITE.headshot} alt={SITE.headshotAlt} width={size} height={size} loading={eager ? 'eager' : 'lazy'} decoding="async" style={`--hs:${size}px;--hs-m:${mobileSize}px`} />
+<style>
+  .headshot { flex: 0 0 var(--hs); width: var(--hs); height: var(--hs); object-fit: cover; }
+  @media (max-width: 640px) { .headshot { flex-basis: var(--hs-m); width: var(--hs-m); height: var(--hs-m); } }
+</style>

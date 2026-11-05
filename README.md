@@ -6,14 +6,13 @@ The consulting site for Geoff DeFrance. It's built with [Astro](https://astro.bu
 
 | What | Where |
 |---|---|
-| Home page text | `src/content/pages/home.md` |
-| About page text | `src/content/pages/about.md` |
+| Site settings (email, LinkedIn, Calendly, headshot, default closing text) | `src/data/settings.json` |
+| Page text (Home, About, Services overview, Work, Contact, Privacy, 404) | `src/content/pages/*.md` |
 | Service pages | `src/content/services/*.md` |
 | Case studies | `src/content/work/*.md` |
 | Colors, fonts, spacing | `src/styles/global.css` (the `:root` tokens at the top) |
-| Email, LinkedIn, Calendly link | `src/site.config.ts` |
 | Redirects | `public/_redirects` |
-| Headshot | `src/assets/geoff-defrance.jpg` |
+| Images, including the headshot | `public/images/` |
 
 ## Editing
 

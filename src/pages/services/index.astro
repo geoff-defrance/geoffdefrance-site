@@ -1,65 +1,48 @@
 ---
+import { getEntry } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import Cta from '../../components/Cta.astro';
 import { ld, faqPage, person } from '../../lib/schema';
 import { SITE } from '../../site.config';
 
-const faqs = [
-  { q: 'Can a diagnostic turn into a fractional engagement?', a: 'Yes. Many fractional engagements start that way. If you continue within 30 days, the diagnostic fee is credited toward the first month.' },
-  { q: 'Do you work outside subscription, streaming, digital media, eCommerce and fiber?', a: "Sometimes. The common thread is a direct-to-consumer business that needs its audience to convert, come back and stay. If that describes you, let's talk." },
-  { q: 'Do you take full-time roles?', a: 'For the right company, yes. Most of my work is fractional and diagnostic.' },
-  { q: 'Where are you based?', a: 'Nashville, Tennessee. I work remotely with companies anywhere and on site when it helps.' },
-];
+const page = (await getEntry('pages', 'services'))!;
+const d = page.data as any;
+const live = d.offers.filter((o: any) => !o.comingSoon && o.linkHref);
 const schema = [
-  ld({ '@type': 'ItemList', itemListElement: [
-    { '@type': 'ListItem', position: 1, item: { '@type': 'Service', name: 'Fractional product leadership', url: `${SITE.url}/services/fractional-product-leadership/`, provider: { '@id': person['@id'] } } },
-    { '@type': 'ListItem', position: 2, item: { '@type': 'Service', name: 'Audience and monetization diagnostic', url: `${SITE.url}/services/audience-monetization-diagnostic/`, provider: { '@id': person['@id'] } } },
-  ] }),
-  faqPage(faqs),
+  ld({ '@type': 'ItemList', itemListElement: live.map((o: any, i: number) => ({ '@type': 'ListItem', position: i + 1, item: { '@type': 'Service', name: o.title, url: `${SITE.url}${o.linkHref}`, provider: { '@id': person['@id'] } } })) }),
+  ...(d.faqs?.length ? [faqPage(d.faqs)] : []),
 ];
 ---
-<Base title="Services | Fractional Product Leadership and Diagnostics | Geoff DeFrance" description="Three ways to work together: a fractional Head of Product, a fixed-fee audience, monetization and conversion diagnostic, and AI-native delivery for subscription, digital media, eCommerce and fiber businesses." schema={schema}>
+<Base title={d.seoTitle} description={d.description} schema={schema}>
   <section class="wrap page-hero">
-    <h1>Three ways to work together</h1>
-    <p class="lede">Most engagements start with a diagnostic or a 30-minute call. Some become fractional leadership. All of them are with me directly.</p>
+    <h1>{d.title}</h1>
+    <p class="lede">{d.intro}</p>
   </section>
 
   <section class="section">
     <div class="wrap offers">
-      <article class="offer">
-        <p class="label label--accent">Lead</p>
-        <h2>Fractional Head of Product, VP Product or CPO</h2>
-        <p><strong>Who it's for:</strong> CEOs, founders and PE operating partners whose company has a product team but no senior product leader.</p>
-        <p><strong>What you get:</strong> strategy, a roadmap tied to revenue metrics, an operating rhythm, an experimentation program and a coached team. One to two days a week, on a monthly retainer.</p>
-        <a href="/services/fractional-product-leadership/">Fractional product leadership</a>
-      </article>
-      <article class="offer">
-        <p class="label label--accent">Diagnose</p>
-        <h2>Audience and monetization diagnostic</h2>
-        <p><strong>Who it's for:</strong> subscription, eCommerce, ad-supported and hybrid businesses where churn, falling traffic, stalled conversion or a lopsided revenue mix is eating growth.</p>
-        <p><strong>What you get:</strong> a teardown of your funnel and site, a review of engagement, audience sources and the revenue mix, a cohort analysis where you sell subscriptions, a checkout and repeat-purchase review where you sell online, and a prioritized fix list. Three weeks, from $5,000.</p>
-        <a href="/services/audience-monetization-diagnostic/">The audience and monetization diagnostic</a>
-      </article>
-      <article class="offer offer--soon">
-        <p class="label">Diagnose · coming soon</p>
-        <h2>Product and platform assessment</h2>
-        <p>Team and tech-stack scorecards, a build-vs-buy review and a replatform readiness check.</p>
-      </article>
-      <article class="offer offer--soon">
-        <p class="label">Build · coming soon</p>
-        <h2>AI-native delivery</h2>
-        <p>How to ship with AI doing the build work and people approving every release: workflows, control gates and the first project, set up with your team. <a href="/work/olivia-olive-oil-replatform/">See how I did it for Olivia Olive Oil.</a></p>
-      </article>
+      {d.offers.map((o: any) => (
+        <article class:list={['offer', { 'offer--soon': o.comingSoon }]}>
+          <p class:list={['label', { 'label--accent': !o.comingSoon }]}>{o.label}{o.comingSoon && ' · coming soon'}</p>
+          <h2>{o.title}</h2>
+          {o.whoFor && <p><strong>Who it's for:</strong> {o.whoFor}</p>}
+          {o.whatYouGet && <p><strong>What you get:</strong> {o.whatYouGet}</p>}
+          {o.body && <p>{o.body}</p>}
+          {o.linkHref && <a href={o.linkHref}>{o.linkLabel}</a>}
+        </article>
+      ))}
     </div>
   </section>
 
-  <section class="section section--alt" aria-labelledby="faq">
-    <div class="wrap measure">
-      <h2 id="faq">Questions</h2>
-      <dl class="faq">{faqs.map((f) => (<><dt>{f.q}</dt><dd>{f.a}</dd></>))}</dl>
-    </div>
-  </section>
-  <Cta headline="Tell me which number won't move." body="A 30-minute call is enough to know whether a diagnostic, a fractional engagement or neither is the right fit." />
+  {d.faqs?.length > 0 && (
+    <section class="section section--alt" aria-labelledby="faq">
+      <div class="wrap measure">
+        <h2 id="faq">Questions</h2>
+        <dl class="faq">{d.faqs.map((f: any) => (<><dt>{f.q}</dt><dd>{f.a}</dd></>))}</dl>
+      </div>
+    </section>
+  )}
+  <Cta headline={SITE.ctaHeadline} body={SITE.ctaBody} />
 </Base>
 <style>
   .page-hero { padding-top: 96px; padding-bottom: 72px; }

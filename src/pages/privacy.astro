@@ -1,15 +1,13 @@
 ---
+import { getEntry, render } from 'astro:content';
 import Base from '../layouts/Base.astro';
-import { SITE } from '../site.config';
+const page = (await getEntry('pages', 'privacy'))!;
+const { Content } = await render(page);
 ---
-<Base title="Privacy | Geoff DeFrance" description="How geoffdefrance.com handles visitor data.">
+<Base title={page.data.seoTitle} description={page.data.description}>
   <section class="wrap page-hero"><div class="prose">
-    <h1>Privacy</h1>
-    <p>This site doesn't use advertising cookies or sell personal information.</p>
-    <p><strong>Analytics.</strong> I use Cloudflare Web Analytics, which counts visits without cookies and without tracking you across other sites.</p>
-    <p><strong>Booking.</strong> If you book a call, Calendly collects the details you enter under its own privacy policy, and shares them with me so I can meet with you.</p>
-    <p><strong>Email.</strong> If you email me, I use your message only to reply and to keep a record of our conversation.</p>
-    <p>Questions? Email <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.</p>
+    <h1>{page.data.title}</h1>
+    <Content />
   </div></section>
 </Base>
 <style>.page-hero { padding-top: 96px; padding-bottom: 96px; } h1 { margin-bottom: 32px; }</style>

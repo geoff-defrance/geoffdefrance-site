@@ -1,14 +1,8 @@
-// One place for site-wide settings. Change a value here and every page follows.
-export const SITE = {
-  name: 'Geoff DeFrance',
-  url: 'https://geoffdefrance.com',
-  tagline: 'Fractional product leadership for subscription, media and eCommerce businesses',
-  email: 'geoff@geoffdefrance.com',
-  linkedin: 'https://www.linkedin.com/in/geoffdefrance/',
-  location: 'Nashville, Tennessee',
-  // Paste your Calendly event link here, e.g. 'https://calendly.com/geoffdefrance/30min'.
-  // While it is empty, every "Book a call" button goes to the Contact page instead.
-  calendlyUrl: 'https://calendly.com/geoff-defrance',
-};
+// Site-wide settings live in src/data/settings.json, which is editable in Pages CMS
+// ("Site settings"). This file just exposes them to the pages.
+import settings from './data/settings.json';
 
+export const SITE = settings;
+
+// While calendlyUrl is empty, every "Book a call" button goes to the Contact page instead.
 export const bookingHref = SITE.calendlyUrl || '/contact/';

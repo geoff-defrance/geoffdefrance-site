@@ -1,11 +1,13 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, getEntry } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import Cta from '../../components/Cta.astro';
 import WorkCard from '../../components/WorkCard.astro';
 import { ld } from '../../lib/schema';
 import { SITE } from '../../site.config';
 
+const page = (await getEntry('pages', 'work'))!;
+const d = page.data as any;
 const work = (await getCollection('work')).sort((a, b) => a.data.order - b.data.order);
 const industries = [...new Set(work.flatMap((w) => w.data.industry))];
 const capabilities = [...new Set(work.flatMap((w) => w.data.capability))];
@@ -16,10 +18,10 @@ const schema = ld({
   hasPart: work.map((w) => ({ '@type': 'Article', headline: w.data.title, url: `${SITE.url}/work/${w.id}/` })),
 });
 ---
-<Base title="Case Studies | Geoff DeFrance" description="Case studies in subscription growth, ad-supported media, eCommerce conversion and AI-native delivery: Motor Trend OnDemand, Motor Trend super-sites, Kinetic and Olivia Olive Oil." schema={schema}>
+<Base title={d.seoTitle} description={d.description} schema={schema}>
   <section class="wrap page-hero">
-    <h1>Work</h1>
-    <p class="lede">Four projects, each with the problem, what I did and the measured result.</p>
+    <h1>{d.title}</h1>
+    <p class="lede">{d.intro}</p>
     <div class="filters" role="group" aria-label="Filter case studies">
       <button type="button" class="chip" aria-pressed="true" data-filter="all">All</button>
       {industries.map((t) => <button type="button" class="chip" aria-pressed="false" data-filter={t}>{t}</button>)}
@@ -36,7 +38,7 @@ const schema = ld({
       ))}
     </div>
   </section>
-  <Cta headline="Have a similar problem?" />
+  <Cta headline={d.ctaHeadline} />
 </Base>
 <script>
   const chips = document.querySelectorAll<HTMLButtonElement>('.chip');

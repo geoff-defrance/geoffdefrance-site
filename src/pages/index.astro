@@ -1,10 +1,9 @@
 ---
 import { getEntry, getCollection } from 'astro:content';
-import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import Cta from '../components/Cta.astro';
 import WorkCard from '../components/WorkCard.astro';
-import headshot from '../assets/geoff-defrance.jpg';
+import Headshot from '../components/Headshot.astro';
 import { bookingHref } from '../site.config';
 import { ld, person, business } from '../lib/schema';
 
@@ -89,7 +88,7 @@ const schema = [ld({ '@graph': [person, business] })];
 
   <section class="section" aria-labelledby="about">
     <div class="wrap about">
-      <Image src={headshot} alt="Geoff DeFrance" width={300} height={300} widths={[300, 600]} sizes="300px" class="headshot" loading="lazy" />
+      <Headshot size={300} />
       <div class="about-text">
         <h2 id="about">{d.aboutHeadline}</h2>
         <p>{d.aboutBody}</p>
@@ -127,9 +126,8 @@ const schema = [ld({ '@graph': [person, business] })];
   .testimonial p { margin: 0; font-family: var(--font-display); font-style: italic; font-size: clamp(1.35rem, 2.4vw, 1.8rem); line-height: 1.4; }
   .testimonial figcaption { margin-top: 16px; font-size: 15px; color: var(--color-text-muted); }
   .about { display: flex; flex-wrap: wrap; align-items: center; gap: 56px; }
-  .headshot { flex: 0 0 300px; width: 300px; height: 300px; object-fit: cover; }
   .about-text { flex: 999 1 420px; min-width: 0; max-width: 680px; }
   .about-text h2 { margin-bottom: 20px; font-size: 2.25rem; }
   .about-text a { font-weight: 500; font-size: 16px; }
-  @media (max-width: 640px) { .hero { padding-top: 64px; padding-bottom: 64px; } .ways { padding-top: 64px; padding-bottom: 64px; } .headshot { flex-basis: 220px; width: 220px; height: 220px; } }
+  @media (max-width: 640px) { .hero { padding-top: 64px; padding-bottom: 64px; } .ways { padding-top: 64px; padding-bottom: 64px; } }
 </style>

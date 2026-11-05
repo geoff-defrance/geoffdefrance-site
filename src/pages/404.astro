@@ -1,10 +1,13 @@
 ---
+import { getEntry, render } from 'astro:content';
 import Base from '../layouts/Base.astro';
+const page = (await getEntry('pages', 'not-found'))!;
+const { Content } = await render(page);
 ---
-<Base title="Page not found | Geoff DeFrance" description="This page doesn't exist.">
+<Base title={page.data.seoTitle} description={page.data.description}>
   <section class="wrap page-hero">
-    <h1>That page isn't here.</h1>
-    <p class="lede">It may have moved. Try the <a href="/">home page</a>, the <a href="/services/">services</a> or the <a href="/work/">case studies</a>.</p>
+    <h1>{page.data.title}</h1>
+    <div class="lede"><Content /></div>
   </section>
 </Base>
 <style>.page-hero { padding-top: 120px; padding-bottom: 160px; } h1 { margin-bottom: 24px; }</style>

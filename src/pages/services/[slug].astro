@@ -47,7 +47,7 @@ const schema = d.faqs.length ? [service, faqPage(d.faqs)] : [service];
       </div>
     </section>
   )}
-  <Cta headline="Tell me which number won't move." body="A 30-minute call is enough to know whether a diagnostic, a fractional engagement or neither is the right fit." />
+  <Cta headline={SITE.ctaHeadline} body={SITE.ctaBody} />
 </Base>
 <style>
   .page-hero { padding-top: 96px; padding-bottom: 72px; }

@@ -5,7 +5,7 @@ export const person = {
   '@id': `${SITE.url}/#person`,
   name: SITE.name,
   url: `${SITE.url}/`,
-  image: `${SITE.url}/images/geoff-defrance.jpg`,
+  image: new URL(SITE.headshot, SITE.url).href,
   jobTitle: 'Fractional Head of Product',
   sameAs: [SITE.linkedin],
   address: { '@type': 'PostalAddress', addressLocality: 'Nashville', addressRegion: 'TN', addressCountry: 'US' },
