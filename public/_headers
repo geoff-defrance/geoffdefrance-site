@@ -1,0 +1,3 @@
+# Keep the workers.dev preview address out of search results; only geoffdefrance.com should be indexed.
+https://geoffdefrance-site.geoff-d-defrance.workers.dev/*
+  X-Robots-Tag: noindex

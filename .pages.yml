@@ -14,6 +14,7 @@ content:
     fields:
       - { name: name, label: Site name, type: string }
       - { name: url, label: Site address, type: string }
+      - { name: searchIndexing, label: Allow search engines to index this site (turn off to hide it from Google), type: boolean }
       - { name: tagline, label: Tagline (used in search results), type: string }
       - { name: email, label: Contact email, type: string }
       - { name: linkedin, label: LinkedIn URL, type: string }
