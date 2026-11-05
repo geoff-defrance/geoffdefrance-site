@@ -8,7 +8,7 @@ export const SITE = {
   location: 'Nashville, Tennessee',
   // Paste your Calendly event link here, e.g. 'https://calendly.com/geoffdefrance/30min'.
   // While it is empty, every "Book a call" button goes to the Contact page instead.
-  calendlyUrl: '',
+  calendlyUrl: 'https://calendly.com/geoff-defrance',
 };
 
 export const bookingHref = SITE.calendlyUrl || '/contact/';
