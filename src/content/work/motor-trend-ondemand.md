@@ -9,6 +9,8 @@ metric: 16% → 9%
 metricLabel: Monthly churn
 industry: [Subscription and streaming]
 capability: [Retention and churn, Platform and build-vs-buy]
+logo: /images/logos/motortrend.png
+logoAlt: Motor Trend
 glance:
   - { label: Company, value: Motor Trend Group (Discovery) }
   - { label: My role, value: SVP Product and Engineering }

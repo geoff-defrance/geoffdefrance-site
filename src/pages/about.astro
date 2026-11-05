@@ -3,6 +3,7 @@ import { getEntry, render } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import Cta from '../components/Cta.astro';
 import Headshot from '../components/Headshot.astro';
+import LogoRow from '../components/LogoRow.astro';
 import { ld, person } from '../lib/schema';
 import { SITE } from '../site.config';
 
@@ -20,12 +21,16 @@ const schema = ld({ '@type': 'ProfilePage', mainEntity: person, url: `${SITE.url
       </div>
     </div>
   </section>
+  <section class="section section--alt logos">
+    <div class="wrap"><LogoRow label="Where I've worked" /></div>
+  </section>
   <section class="section">
     <div class="wrap"><div class="prose"><Content /></div></div>
   </section>
   <Cta headline={SITE.ctaHeadline} body={SITE.ctaBody} />
 </Base>
 <style>
+  .logos { padding: 48px 0; }
   .page-hero { padding-top: 96px; padding-bottom: 72px; }
   .intro { display: flex; flex-wrap: wrap; align-items: center; gap: 48px; }
   .intro > div { flex: 999 1 420px; min-width: 0; }

@@ -9,6 +9,8 @@ metric: ~50%
 metricLabel: Traffic and engagement lift
 industry: [Digital media and publishing]
 capability: [Engagement and ad monetization, Platform and build-vs-buy]
+logo: /images/logos/motortrend.png
+logoAlt: Motor Trend
 glance:
   - { label: Company, value: Motor Trend Group (Discovery) }
   - { label: Industry, value: Digital media and publishing (ad-supported) }

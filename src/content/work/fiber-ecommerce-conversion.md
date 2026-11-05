@@ -9,6 +9,8 @@ metric: 2×
 metricLabel: Conversion rate, year over year
 industry: [Telecom and fiber]
 capability: [Conversion and experimentation]
+logo: /images/logos/uniti.png
+logoAlt: Uniti
 glance:
   - { label: Company, value: "Kinetic, the consumer and small-business fiber brand of Uniti (1.8M+ households across 21 states)" }
   - { label: My role, value: "VP Digital Product Experience, reporting to the CMO and CRO" }

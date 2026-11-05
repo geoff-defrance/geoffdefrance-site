@@ -10,5 +10,43 @@
   "headshot": "/images/geoff-defrance.jpg",
   "headshotAlt": "Geoff DeFrance",
   "ctaHeadline": "Tell me which number won't move. We'll solve it.",
-  "ctaBody": "A 30-minute call is enough to know whether a diagnostic, a fractional engagement or something else is the right fit."
+  "ctaBody": "A 30-minute call is enough to know whether a diagnostic, a fractional engagement or something else is the right fit.",
+  "logosLabel": "Previously at",
+  "logos": [
+    {
+      "name": "Uniti (Kinetic)",
+      "src": "/images/logos/uniti.png",
+      "height": 27
+    },
+    {
+      "name": "FloSports",
+      "src": "/images/logos/flosports.png",
+      "height": 18
+    },
+    {
+      "name": "Opry Entertainment Group (Circle Media)",
+      "src": "/images/logos/opry.png",
+      "height": 27
+    },
+    {
+      "name": "Motor Trend Group",
+      "src": "/images/logos/motortrend.png",
+      "height": 22
+    },
+    {
+      "name": "Warner Bros. Discovery",
+      "src": "/images/logos/warner-bros-discovery.png",
+      "height": 23
+    },
+    {
+      "name": "Kelley Blue Book",
+      "src": "/images/logos/kelley-blue-book.png",
+      "height": 32
+    },
+    {
+      "name": "Yahoo!",
+      "src": "/images/logos/yahoo.png",
+      "height": 27
+    }
+  ]
 }

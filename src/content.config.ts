@@ -16,6 +16,8 @@ const work = defineCollection({
     metricLabel: z.string(),
     industry: z.array(z.string()),
     capability: z.array(z.string()),
+    logo: z.string().optional(),
+    logoAlt: z.string().optional(),
     glance: z.array(z.object({ label: z.string(), value: z.string() })),
     quote: z.object({ text: z.string(), attribution: z.string() }).optional(),
     ctaHeadline: z.string(),

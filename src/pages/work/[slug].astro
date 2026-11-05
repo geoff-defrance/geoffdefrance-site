@@ -30,6 +30,7 @@ const schema = ld({
     </header>
     <section class="wrap glance" aria-label="At a glance">
       <div class="glance-metric">
+        {d.logo && <img class="company-logo" src={d.logo} alt={d.logoAlt ?? ''} loading="eager" decoding="async" />}
         <div class="numeral">{d.metric}</div>
         <p class="muted">{d.metricLabel}</p>
       </div>
@@ -56,7 +57,8 @@ const schema = ld({
   .page-hero h1 { max-width: 960px; font-size: clamp(2.2rem, 4.6vw, 3.75rem); }
   .page-hero .label a { color: inherit; }
   .glance { display: grid; gap: 40px; grid-template-columns: minmax(0, 260px) minmax(0, 1fr); padding-bottom: 72px; }
-  .glance-metric .numeral { font-size: clamp(3rem, 6vw, 4.5rem); }
+  .company-logo { display: block; height: 30px; width: auto; max-width: 100%; margin-bottom: 24px; opacity: 0.72; }
+  .glance-metric .numeral { font-size: clamp(2.6rem, 4.2vw, 3.5rem); white-space: nowrap; }
   .glance-metric p { margin: 10px 0 0; font-size: 15px; }
   dl { margin: 0; border-top: 1px solid var(--color-rule); }
   dl div { display: grid; grid-template-columns: 140px minmax(0, 1fr); gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--color-rule); font-size: 16px; }
