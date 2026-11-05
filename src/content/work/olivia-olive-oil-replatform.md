@@ -1,24 +1,35 @@
 ---
 title: "Olivia Olive Oil: a one-person, AI-native replatform in six to eight weeks"
-seoTitle: "Olivia Olive Oil: A One-Person, AI-Native eCommerce Replatform | Geoff DeFrance"
-description: How one product leader, with Claude doing the build work under human control, rebuilt a specialty retailer's eCommerce site in six to eight weeks, with 40+ releases and zero migration errors.
+seoTitle: "Olivia Olive Oil: A One-Person, AI-Native eCommerce Replatform |
+  Geoff DeFrance"
+description: How one product leader, with Claude doing the build work under
+  human control, rebuilt a specialty retailer's eCommerce site in six to eight
+  weeks, with 40+ releases and zero migration errors.
 order: 4
-cardTitle: "Olivia Olive Oil: a one-person, AI-native replatform of a 15+ year-old business"
-summary: 236 customer accounts and 1,062 orders migrated with zero errors, and 40+ releases in six to eight weeks.
+cardTitle: "Olivia Olive Oil: a one-person, AI-native replatform of a 15+
+  year-old business"
+summary: 236 customer accounts and 1,062 orders migrated with zero errors, and
+  40+ releases in six to eight weeks.
 metric: 40+
 metricLabel: Releases in six to eight weeks
-industry: [eCommerce and specialty retail]
-capability: [AI-native delivery, Platform and build-vs-buy]
+industry:
+  - eCommerce and specialty retail
+capability:
+  - AI-native delivery
+  - Platform and build-vs-buy
 glance:
-  - { label: Company, value: "Olivia Olive Oil, a specialty olive oil and vinegar tasting room in Franklin, Tennessee, since 2010" }
-  - { label: My role, value: "Product and technology lead, as a one-person team" }
-  - { label: Timeframe, value: "Summer 2026; new site launched August 28, 2026" }
-  - { label: Result, value: "40+ production releases in six to eight weeks; 236 customer accounts and 1,062 orders migrated with zero emails sent and zero misattributed orders" }
+  - label: Company
+    value: Olivia Olive Oil, a specialty olive oil and vinegar tasting room in
+      Franklin, Tennessee, since 2010
+  - label: My role
+    value: Product and technology lead, as a one-person team
+  - label: Timeframe
+    value: Summer 2026; new site launched August 28, 2026
+  - label: Result
+    value: 40+ production releases in six to eight weeks; 236 customer accounts and
+      1,062 orders migrated with zero emails sent and zero misattributed orders
 ctaHeadline: Want your team to work this way?
 ---
-
-**Disclosure:** Olivia Olive Oil is my wife's business. You can see the site at [oliviaevoo.com](https://oliviaevoo.com).
-
 ## The challenge
 
 Olivia needed a new site its owner could update herself, a customer and order history that had to survive the move intact, and no development team to build it.
@@ -55,3 +66,5 @@ About 67% of the store's order volume turned out to be bot and fraud traffic, mo
 ## What it shows
 
 One experienced product leader, with AI doing the build work and clear human controls, can deliver what used to take an agency team. The controls are what make it safe to run on a live business.
+
+*You can see the site at [oliviaevoo.com](https://oliviaevoo.com).*
