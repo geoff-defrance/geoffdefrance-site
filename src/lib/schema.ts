@@ -19,6 +19,7 @@ export const business = {
   name: SITE.name,
   url: `${SITE.url}/`,
   description: SITE.tagline,
+  logo: new URL('/images/defrance-and-co-logo.png', SITE.url).href,
   founder: { '@id': `${SITE.url}/#person` },
   areaServed: 'Worldwide',
   address: { '@type': 'PostalAddress', addressLocality: 'Nashville', addressRegion: 'TN', addressCountry: 'US' },
