@@ -1,5 +1,5 @@
 {
-  "name": "Geoff DeFrance",
+  "name": "DeFrance Digital Advisory",
   "url": "https://geoffdefrance.com",
   "searchIndexing": true,
   "tagline": "Fractional product leadership for subscription, media and eCommerce businesses",
@@ -9,8 +9,6 @@
   "calendlyUrl": "https://calendly.com/geoff-defrance",
   "headshot": "/images/geoff-defrance.jpg",
   "headshotAlt": "Geoff DeFrance",
-  "ctaHeadline": "Tell me which number won't move. We'll solve it.",
-  "ctaBody": "A 30-minute call is enough to know whether a diagnostic, a fractional engagement or something else is the right fit.",
   "logosLabel": "Previously at",
   "logos": [
     {
@@ -48,5 +46,7 @@
       "src": "/images/logos/yahoo.png",
       "height": 27
     }
-  ]
+  ],
+  "ctaHeadline": "Tell me which number won't move. We'll solve it.",
+  "ctaBody": "A 30-minute call is enough to know whether a diagnostic, a fractional engagement or something else is the right fit."
 }
