@@ -15,16 +15,28 @@ const work = await getCollection('work');
 const featured = d.featured.map((slug: string) => work.find((w) => w.id === slug)).filter(Boolean);
 const external = bookingHref.startsWith('http');
 const schema = [ld({ '@graph': [person, business] })];
+// Headshot size is set in Pages CMS (Home page › Headshot size / width).
+const sizes: Record<string, number> = { small: 160, medium: 240, large: 320 };
+const showHeadshot = d.headshotShow !== false;
+const headshotWidth = Number(d.headshotWidth) > 0 ? Number(d.headshotWidth) : sizes[d.headshotSize ?? 'medium'] ?? 240;
 ---
 <Base title={d.seoTitle} description={d.description} schema={schema}>
   <section class="hero wrap">
-    <p class="label">{d.eyebrow}</p>
-    <h1>{d.title}</h1>
-    <p class="lede hero-sub">{d.subhead}</p>
-    <div class="actions">
-      <a class="btn" href={bookingHref} {...(external ? { target: '_blank', rel: 'noopener' } : {})}>Book a 30-minute call</a>
-      <a class="textlink" href="/work/">See the work</a>
+    <div class="hero-text">
+      <p class="label">{d.eyebrow}</p>
+      <h1>{d.title}</h1>
+      <p class="lede hero-sub">{d.subhead}</p>
+      <div class="actions">
+        <a class="btn" href={bookingHref} {...(external ? { target: '_blank', rel: 'noopener' } : {})}>Book a 30-minute call</a>
+        <a class="textlink" href="/work/">See the work</a>
+      </div>
     </div>
+    {showHeadshot && (
+      <figure class="hero-photo">
+        <Headshot size={headshotWidth} mobileSize={Math.min(headshotWidth, 120)} eager />
+        <figcaption><strong>{SITE.personName}</strong><br />{SITE.personTitle}, {SITE.name}</figcaption>
+      </figure>
+    )}
   </section>
 
   <section class="section section--alt" aria-labelledby="results">
@@ -90,7 +102,7 @@ const schema = [ld({ '@graph': [person, business] })];
 
   <section class="section" aria-labelledby="about">
     <div class="wrap about">
-      <Headshot size={300} />
+      {!showHeadshot && <Headshot size={300} />}
       <div class="about-text">
         <h2 id="about">{d.aboutHeadline}</h2>
         <p>{d.aboutBody}</p>
@@ -103,8 +115,13 @@ const schema = [ld({ '@graph': [person, business] })];
 </Base>
 
 <style>
-  .hero { padding-top: 112px; padding-bottom: 96px; }
+  .hero { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 40px 64px; padding-top: 112px; padding-bottom: 96px; }
+  .hero-text { flex: 1 1 520px; min-width: 0; }
   .hero h1 { max-width: 920px; }
+  .hero-photo { flex: 0 0 auto; margin: 8px 0 0; max-width: 100%; }
+  .hero-photo figcaption { margin-top: 14px; font-size: 14px; line-height: 1.45; color: var(--color-text-muted); }
+  .hero-photo figcaption strong { color: var(--color-text); font-weight: 600; }
+  @media (max-width: 900px) { .hero-photo { order: -1; margin-top: 0; display: flex; align-items: center; gap: 20px; } .hero-photo figcaption { margin-top: 0; } }
   .hero-sub { margin-top: 32px; }
   .proof { display: grid; gap: 40px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); }
   .proof .numeral { font-size: clamp(2.4rem, 3.6vw, 3.25rem); white-space: nowrap; }

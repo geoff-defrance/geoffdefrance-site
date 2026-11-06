@@ -1,9 +1,16 @@
 # Pages CMS configuration (https://pagescms.org). Sign in at app.pagescms.org with GitHub
 # and open this repository to edit text and images in a web editor. Each save is a commit,
-# and Cloudflare Pages redeploys the site automatically.
+# and Cloudflare redeploys the site automatically.
 media:
-  input: public/images
-  output: /images
+  - name: images
+    label: Images
+    input: public/images
+    output: /images
+  - name: files
+    label: Files (CV and other downloads)
+    input: public/files
+    output: /files
+    extensions: [pdf]
 
 content:
   - name: settings
@@ -12,15 +19,19 @@ content:
     path: src/data/settings.json
     format: json
     fields:
-      - { name: name, label: Site name, type: string }
+      - { name: name, label: Site name (business name shown top left), type: string }
+      - { name: personName, label: Your name (shown under the business name and used for search engines), type: string }
+      - { name: personTitle, label: Your title (e.g. Principal or Founder), type: string }
       - { name: url, label: Site address, type: string }
       - { name: searchIndexing, label: Allow search engines to index this site (turn off to hide it from Google), type: boolean }
       - { name: tagline, label: Tagline (used in search results), type: string }
       - { name: email, label: Contact email, type: string }
       - { name: linkedin, label: LinkedIn URL, type: string }
+      - { name: cvFile, label: CV (PDF; leave empty to hide all CV links), type: file, options: { media: files } }
+      - { name: cvLabel, label: CV link text in the footer, type: string }
       - { name: location, label: Location (footer), type: string }
       - { name: calendlyUrl, label: Calendly link (blank sends buttons to Contact), type: string }
-      - { name: headshot, label: Headshot photo (square works best), type: image }
+      - { name: headshot, label: Headshot photo (square works best), type: image, options: { media: images } }
       - { name: headshotAlt, label: Headshot description for screen readers, type: string }
       - { name: logosLabel, label: Label above the logo row, type: string }
       - name: logos
@@ -29,7 +40,7 @@ content:
         list: true
         fields:
           - { name: name, label: Company name, type: string }
-          - { name: src, label: Logo (transparent PNG, single color), type: image }
+          - { name: src, label: Logo (transparent PNG, single color), type: image, options: { media: images } }
           - { name: height, label: Display height in pixels (about 18 to 32), type: number }
       - { name: ctaHeadline, label: Default closing headline, type: string }
       - { name: ctaBody, label: Default closing text, type: text }
@@ -40,6 +51,16 @@ content:
     fields:
       - { name: seoTitle, label: Browser tab and Google title, type: string }
       - { name: description, label: Google description, type: text }
+      - { name: headshotShow, label: Show headshot at the top of the page, type: boolean }
+      - name: headshotSize
+        label: Headshot size
+        type: select
+        options:
+          values:
+            - { value: small, label: "Small (160 px wide)" }
+            - { value: medium, label: "Medium (240 px wide)" }
+            - { value: large, label: "Large (320 px wide)" }
+      - { name: headshotWidth, label: Headshot exact width in pixels (optional; overrides size; 0 = use size), type: number }
       - { name: eyebrow, label: Small line above the headline, type: string }
       - { name: title, label: Headline, type: string }
       - { name: subhead, label: Subhead, type: text }
@@ -124,7 +145,7 @@ content:
       - { name: description, label: Google description, type: text }
       - { name: order, label: Sort order, type: number }
       - { name: cardTitle, label: Card title, type: string }
-      - { name: logo, label: Company logo (optional), type: image }
+      - { name: logo, label: Company logo (optional), type: image, options: { media: images } }
       - { name: logoAlt, label: Company name for the logo, type: string }
       - { name: summary, label: Card summary, type: text }
       - { name: metric, label: Big number, type: string }

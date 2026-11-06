@@ -16,8 +16,8 @@ const schema = ld({
   '@type': 'Article',
   headline: d.title,
   description: d.description,
-  author: { '@type': 'Person', '@id': `${SITE.url}/#person`, name: SITE.name, url: `${SITE.url}/` },
-  publisher: { '@type': 'Person', name: SITE.name },
+  author: { '@type': 'Person', '@id': `${SITE.url}/#person`, name: SITE.personName, url: `${SITE.url}/` },
+  publisher: { '@type': 'Organization', '@id': `${SITE.url}/#business`, name: SITE.name },
   url: new URL(Astro.url.pathname, SITE.url).href,
   about: [...d.industry, ...d.capability],
 });

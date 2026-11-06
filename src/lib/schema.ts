@@ -3,12 +3,13 @@ import { SITE } from '../site.config';
 export const person = {
   '@type': 'Person',
   '@id': `${SITE.url}/#person`,
-  name: SITE.name,
+  name: SITE.personName,
   url: `${SITE.url}/`,
   image: new URL(SITE.headshot, SITE.url).href,
   jobTitle: 'Fractional Head of Product',
   sameAs: [SITE.linkedin],
   address: { '@type': 'PostalAddress', addressLocality: 'Nashville', addressRegion: 'TN', addressCountry: 'US' },
+  worksFor: { '@id': `${SITE.url}/#business` },
   alumniOf: { '@type': 'CollegeOrUniversity', name: 'San Francisco State University' },
 };
 

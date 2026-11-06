@@ -36,6 +36,7 @@ const linkedinLabel = SITE.linkedin.replace(/^https?:\/\/(www\.)?/, '').replace(
         <p><a class="btn" href={`mailto:${SITE.email}?subject=${subject}&body=${body}`}>Email {SITE.email}</a></p>
         <dl>
           <div><dt>LinkedIn</dt><dd><a href={SITE.linkedin} rel="me noopener" target="_blank">{linkedinLabel}</a></dd></div>
+          {SITE.cvFile && <div><dt>CV</dt><dd><a href={SITE.cvFile} target="_blank" rel="noopener">Download (PDF)</a></dd></div>}
           <div><dt>Location</dt><dd>{d.locationText}</dd></div>
         </dl>
       </aside>

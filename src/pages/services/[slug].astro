@@ -18,7 +18,7 @@ const service = ld({
   name: d.serviceType,
   description: d.description,
   serviceType: d.serviceType,
-  provider: { '@id': `${SITE.url}/#person`, '@type': 'Person', name: SITE.name },
+  provider: { '@id': `${SITE.url}/#business`, '@type': 'ProfessionalService', name: SITE.name, founder: { '@id': `${SITE.url}/#person`, '@type': 'Person', name: SITE.personName } },
   areaServed: 'Worldwide',
   url: new URL(Astro.url.pathname, SITE.url).href,
   ...(d.price ? { offers: { '@type': 'Offer', price: d.price, priceCurrency: 'USD', description: `From $${d.price.toLocaleString('en-US')}, fixed fee` } } : {}),

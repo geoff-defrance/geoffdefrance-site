@@ -2,6 +2,9 @@
 title: I build and fix subscription, media and eCommerce businesses.
 seoTitle: Geoff DeFrance | Fractional Product Leader for Subscription and DTC Businesses
 description: Fractional Head of Product and fixed-fee diagnostics for subscription, streaming, digital media, eCommerce and fiber businesses. Built Motor Trend OnDemand from zero to 200K+ subscribers.
+headshotShow: true
+headshotSize: medium
+headshotWidth: 0
 eyebrow: Fractional product leadership · Nashville, Tennessee
 subhead: The product, the funnel and the teams behind them. Fractional product leadership and fixed-fee diagnostics for subscription, streaming, digital media, eCommerce and fiber companies.
 proof:

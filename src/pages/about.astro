@@ -17,7 +17,9 @@ const schema = ld({ '@type': 'ProfilePage', mainEntity: person, url: `${SITE.url
       <Headshot size={360} mobileSize={240} eager />
       <div>
         <h1>{entry.data.title}</h1>
-        <p class="lede">Product and technology leader for subscription, media and eCommerce businesses. <a href={SITE.linkedin} rel="me noopener" target="_blank">LinkedIn profile</a></p>
+        <p class="label">{SITE.personName} · {SITE.personTitle}, {SITE.name}</p>
+        <p class="lede">Product and technology leader for subscription, media and eCommerce businesses.</p>
+        <p class="profile-links"><a href={SITE.linkedin} rel="me noopener" target="_blank">LinkedIn profile</a>{SITE.cvFile && <> · <a href={SITE.cvFile} target="_blank" rel="noopener">Download my CV (PDF)</a></>}</p>
       </div>
     </div>
   </section>
@@ -35,5 +37,7 @@ const schema = ld({ '@type': 'ProfilePage', mainEntity: person, url: `${SITE.url
   .intro { display: flex; flex-wrap: wrap; align-items: center; gap: 48px; }
   .intro > div { flex: 999 1 420px; min-width: 0; }
   .intro h1 { margin-bottom: 20px; }
+  .intro .label { margin-bottom: 12px; }
+  .profile-links { margin-top: 16px; font-size: 16px; font-weight: 500; }
   @media (max-width: 640px) { .page-hero { padding-top: 48px; } }
 </style>
