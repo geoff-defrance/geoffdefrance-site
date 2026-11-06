@@ -1,15 +1,15 @@
-/* Design tokens: Editorial Operator, with Data Report proof numerals.
+/* Design tokens: Modernized Editorial (Nov 2026): light serif headlines, Inter everywhere else, crimson accent.
    Change a color or font here and the whole site follows. */
 :root {
-  --color-bg: #F7F4EE;
-  --color-bg-alt: #F2EEE5;
-  --color-text: #1C1B19;
+  --color-bg: #FBFAF7;
+  --color-bg-alt: #F1EDE5;
+  --color-text: #16161A;
   --color-text-muted: #5E5A52;
-  --color-accent: #7A1F2B;
-  --color-accent-hover: #5A1520;
-  --color-rule: #C9B99A;
-  --color-inverse-bg: #1C1B19;
-  --color-inverse-text: #F7F4EE;
+  --color-accent: #B4232C;
+  --color-accent-hover: #8F1B23;
+  --color-rule: #E7E3DA;
+  --color-inverse-bg: #16161A;
+  --color-inverse-text: #FBFAF7;
   --color-inverse-muted: #D9D3C7;
 
   --font-display: 'Fraunces Variable', Georgia, 'Times New Roman', serif;
@@ -17,7 +17,7 @@
 
   --measure: 680px;
   --wide: 1120px;
-  --radius: 2px;
+  --radius: 6px;
 
   --space-1: 4px;
   --space-2: 8px;
@@ -51,13 +51,13 @@ a:hover { color: var(--color-accent-hover); }
 
 h1, h2, h3 {
   font-family: var(--font-display);
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  line-height: 1.12;
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  line-height: 1.08;
   margin: 0;
   text-wrap: balance;
 }
-h1 { font-size: clamp(2.5rem, 5.5vw, 4.5rem); letter-spacing: -0.025em; }
+h1 { font-size: clamp(2.5rem, 5.5vw, 4.5rem); letter-spacing: -0.035em; }
 h2 { font-size: clamp(1.9rem, 3.4vw, 2.75rem); }
 h3 { font-size: 1.6rem; line-height: 1.2; }
 
@@ -81,7 +81,8 @@ p { margin: 0 0 1em; }
 .muted { color: var(--color-text-muted); }
 
 .section { padding: var(--space-7) 0; border-top: 1px solid var(--color-rule); }
-.section--alt { background: var(--color-bg-alt); }
+.section--alt { background: var(--color-bg-alt); border-top: 0; }
+.section--alt + .section { border-top: 0; }
 .section--first { border-top: 0; }
 
 .btn {
@@ -90,7 +91,7 @@ p { margin: 0 0 1em; }
   border-radius: var(--radius);
   background: var(--color-accent);
   color: #fff;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 17px;
   line-height: 1.2;
   text-decoration: none;
@@ -108,12 +109,12 @@ p { margin: 0 0 1em; }
 .grid { display: grid; gap: var(--space-5); grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); }
 
 .numeral {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: clamp(2.6rem, 5vw, 3.75rem);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: clamp(2.4rem, 4.6vw, 3.4rem);
   line-height: 1;
-  letter-spacing: -0.03em;
-  color: var(--color-accent);
+  letter-spacing: -0.035em;
+  color: var(--color-text);
 }
 
 /* Long-form content from Markdown (case studies, service pages, about) */

@@ -13,15 +13,19 @@ subhead: The product, the funnel and the teams behind them. Fractional product
   media, eCommerce and fiber companies.
 proof:
   - figure: 200K+
+    label: Subscription
     lead: Subscribers in 18 months, from zero.
     detail: Motor Trend OnDemand SVOD, $10M+ in new revenue.
   - figure: $120M+
+    label: Streaming
     lead: Revenue, up from $80M in one year.
     detail: FloSports, 750K+ subscribers across 26 sports.
   - figure: 10–20%
+    label: eCommerce
     lead: Above eCommerce conversion goals.
     detail: Kinetic, a consumer fiber brand serving 1.8M+ households.
   - figure: −31 → +19
+    label: Retention
     lead: NPS.
     detail: Motor Trend OnDemand customers, after a rebuild driven by product
       discovery.

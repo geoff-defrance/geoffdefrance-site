@@ -19,7 +19,7 @@ content:
     path: src/data/settings.json
     format: json
     fields:
-      - { name: name, label: Site name (business name shown top left), type: string }
+      - { name: name, label: "Business name (shown top left; an & is styled in crimson italic)", type: string }
       - { name: personName, label: Your name (shown under the business name and used for search engines), type: string }
       - { name: personTitle, label: Your title (e.g. Principal or Founder), type: string }
       - { name: url, label: Site address, type: string }
@@ -69,6 +69,7 @@ content:
         type: object
         list: true
         fields:
+          - { name: label, label: Category label (shown as 01 · Label), type: string }
           - { name: figure, label: Big number, type: string }
           - { name: lead, label: Bold lead-in, type: string }
           - { name: detail, label: Detail, type: string }

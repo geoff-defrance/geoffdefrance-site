@@ -21,6 +21,8 @@ const nav = [
   { href: '/about/', label: 'About' },
 ];
 const external = bookingHref.startsWith('http');
+const [namePre, namePost] = SITE.name.includes('&') ? [SITE.name.slice(0, SITE.name.indexOf('&')), SITE.name.slice(SITE.name.indexOf('&') + 1)] : [SITE.name, ''];
+const hasAmp = SITE.name.includes('&');
 ---
 <!doctype html>
 <html lang="en">
@@ -41,7 +43,7 @@ const external = bookingHref.startsWith('http');
     <meta property="og:image" content={ogImage} />
     <meta property="og:site_name" content={SITE.name} />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="theme-color" content="#F7F4EE" />
+    <meta name="theme-color" content="#FBFAF7" />
     {schemas.map((s) => <script type="application/ld+json" set:html={JSON.stringify(s)} />)}
   </head>
   <body>
@@ -49,7 +51,7 @@ const external = bookingHref.startsWith('http');
     <header class="site-header">
       <nav class="wrap site-nav" aria-label="Main">
         <a class="brand" href="/" aria-label={`${SITE.name}, ${SITE.personName}, home`}>
-          <span class="brand-name">{SITE.name}</span>
+          <span class="brand-name">{namePre}{hasAmp && <span class="amp">&amp;</span>}{namePost}</span>
           <span class="brand-person">{SITE.personName}{SITE.personTitle ? `, ${SITE.personTitle}` : ''}</span>
         </a>
         <div class="nav-links">
@@ -81,7 +83,8 @@ const external = bookingHref.startsWith('http');
   .site-header { border-bottom: 1px solid var(--color-rule); }
   .site-nav { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; padding-top: 18px; padding-bottom: 18px; }
   .brand { display: flex; flex-direction: column; gap: 2px; color: var(--color-text); text-decoration: none; line-height: 1.15; }
-  .brand-name { font-family: var(--font-display); font-weight: 600; font-size: 22px; letter-spacing: -0.01em; }
+  .brand-name { font-family: var(--font-display); font-weight: 400; font-size: 25px; letter-spacing: -0.035em; }
+  .brand-name .amp { font-style: italic; color: var(--color-accent); }
   .brand-person { font-size: 13px; letter-spacing: 0.02em; color: var(--color-text-muted); }
   .brand:hover .brand-name { color: var(--color-accent); }
   .nav-links { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 28px; font-size: 16px; }

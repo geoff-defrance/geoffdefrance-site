@@ -6,6 +6,6 @@ const { size, mobileSize = 220, eager = false } = Astro.props;
 ---
 <img class="headshot" src={SITE.headshot} alt={SITE.headshotAlt} width={size} loading={eager ? 'eager' : 'lazy'} decoding="async" style={`--hs:${size}px;--hs-m:${Math.min(size, mobileSize)}px`} />
 <style>
-  .headshot { flex: 0 0 auto; display: block; width: var(--hs); max-width: 100%; height: auto; }
+  .headshot { flex: 0 0 auto; display: block; width: var(--hs); max-width: 100%; height: auto; border-radius: 8px; }
   @media (max-width: 640px) { .headshot { width: var(--hs-m); } }
 </style>

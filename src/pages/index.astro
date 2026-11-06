@@ -23,7 +23,7 @@ const headshotWidth = Number(d.headshotWidth) > 0 ? Number(d.headshotWidth) : si
 <Base title={d.seoTitle} description={d.description} schema={schema}>
   <section class="hero wrap">
     <div class="hero-text">
-      <p class="label">{d.eyebrow}</p>
+      <p class="label label--accent">{d.eyebrow}</p>
       <h1>{d.title}</h1>
       <p class="lede hero-sub">{d.subhead}</p>
       <div class="actions">
@@ -43,8 +43,9 @@ const headshotWidth = Number(d.headshotWidth) > 0 ? Number(d.headshotWidth) : si
     <div class="wrap">
       <h2 id="results" class="label">Results</h2>
       <div class="proof">
-        {d.proof.map((p: any) => (
+        {d.proof.map((p: any, i: number) => (
           <div>
+            {p.label && <p class="proof-label">{String(i + 1).padStart(2, '0')} · {p.label}</p>}
             <div class="numeral">{p.figure}</div>
             <p class="proof-text"><strong>{p.lead}</strong> {p.detail}</p>
           </div>
@@ -125,6 +126,7 @@ const headshotWidth = Number(d.headshotWidth) > 0 ? Number(d.headshotWidth) : si
   .hero-sub { margin-top: 32px; }
   .proof { display: grid; gap: 40px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); }
   .proof .numeral { font-size: clamp(2.4rem, 3.6vw, 3.25rem); white-space: nowrap; }
+  .proof-label { margin: 0 0 14px; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-accent); }
   .proof-text { margin: 16px 0 0; font-size: 16px; line-height: 1.5; }
   .proof-text strong { font-weight: 600; }
   .previously { margin: 56px 0 0; padding-top: 32px; border-top: 1px solid var(--color-rule); font-size: 15px; }
