@@ -77,7 +77,8 @@ aboutBody: For more than 20 years I've led product and engineering at
   ad-supported media, streaming, sports, automotive and telecom companies, with
   teams of up to 79 people and budgets of $17M+. I'm based in Nashville,
   Tennessee, and work with companies anywhere.
-ctaHeadline: "The metrics are the symptom. Let’s find the cause: product, people or platform."
+ctaHeadline: "The metrics are the symptoms. Let’s find the cause: product,
+  people or platform."
 ctaBody: A 30-minute call is enough to know whether a diagnostic, a fractional
   engagement or neither is the right fit.
 ---
