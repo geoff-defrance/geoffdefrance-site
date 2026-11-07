@@ -53,6 +53,7 @@ const brandRest = SITE.name.split(' ').slice(1).join(' ');
       <div class="wrap topbar-inner">
         <span><strong>{SITE.personName}</strong>{SITE.personTitle && <span class="topbar-title"> · {SITE.personTitle}</span>}</span>
         <span class="topbar-links">
+          <a href={`mailto:${SITE.email}`}>Email</a>
           <a href={SITE.linkedin} rel="me noopener" target="_blank">LinkedIn</a>
           {SITE.cvFile && <a href={SITE.cvFile} target="_blank" rel="noopener">CV</a>}
         </span>
