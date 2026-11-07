@@ -1,10 +1,11 @@
 ---
 title: About Geoff
 seoTitle: About Geoff DeFrance | Product and Technology Leader
-description: 20+ years leading product and engineering at Yahoo!, Kelley Blue Book, Motor Trend Group, Circle Media, FloSports and Kinetic. Based in Nashville, Tennessee.
+description: 20+ years leading product and engineering at Yahoo!, Kelley Blue
+  Book, Motor Trend Group, Circle Media, FloSports and Kinetic. Based in
+  Nashville, Tennessee.
 ---
-
-I've spent more than 20 years building and fixing digital products that customers pay for: subscription streaming services, ad-supported media sites, sports platforms and online ordering for a fiber provider. I've led teams of up to 79 people across product management, design, engineering and QA, with budgets of $17M+.
+I've spent more than 20 years building and optimizing digital products that customers pay for: subscription streaming services, ad-supported media sites, sports platforms and online ordering for a fiber provider. I've led teams of up to 79 people across product management, design, engineering and QA, with budgets of $17M+.
 
 Today I work with a small number of companies as a fractional product leader and run fixed-fee diagnostics for subscription, streaming, media and eCommerce businesses.
 
