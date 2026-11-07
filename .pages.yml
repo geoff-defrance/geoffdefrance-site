@@ -19,7 +19,7 @@ content:
     path: src/data/settings.json
     format: json
     fields:
-      - { name: name, label: "Business name (shown top left; an & is styled in crimson italic)", type: string }
+      - { name: name, label: "Business name (top left: first word in serif, the rest beside it)", type: string }
       - { name: personName, label: Your name (shown under the business name and used for search engines), type: string }
       - { name: personTitle, label: Your title (e.g. Principal or Founder), type: string }
       - { name: url, label: Site address, type: string }
