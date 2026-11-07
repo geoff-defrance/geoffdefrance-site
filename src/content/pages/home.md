@@ -7,25 +7,25 @@ headshotShow: true
 headshotSize: large
 headshotWidth: 0
 eyebrow: Fractional product leadership · Nashville, Tennessee
-title: I build and fix subscription, media and eCommerce businesses.
+title: I build and optimize subscription, media and eCommerce businesses.
 subhead: The product, the funnel and the teams behind them. Fractional product
   leadership and fixed-fee diagnostics for subscription, streaming, digital
   media, eCommerce and fiber companies.
 proof:
-  - figure: 200K+
-    label: Subscription
+  - label: Subscription
+    figure: 200K+
     lead: Subscribers in 18 months, from zero.
     detail: Motor Trend OnDemand SVOD, $10M+ in new revenue.
-  - figure: $120M+
-    label: Streaming
+  - label: Streaming
+    figure: $120M+
     lead: Revenue, up from $80M in one year.
     detail: FloSports, 750K+ subscribers across 26 sports.
-  - figure: 10–20%
-    label: eCommerce
+  - label: eCommerce
+    figure: 10–20%
     lead: Above eCommerce conversion goals.
     detail: Kinetic, a consumer fiber brand serving 1.8M+ households.
-  - figure: −31 → +19
-    label: Retention
+  - label: Retention
+    figure: −31 → +19
     lead: NPS.
     detail: Motor Trend OnDemand customers, after a rebuild driven by product
       discovery.
