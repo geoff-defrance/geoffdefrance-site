@@ -26,7 +26,8 @@ content:
       - { name: searchIndexing, label: Allow search engines to index this site (turn off to hide it from Google), type: boolean }
       - { name: tagline, label: Tagline (used in search results), type: string }
       - { name: email, label: Contact email, type: string }
-      - { name: linkedin, label: LinkedIn URL, type: string }
+      - { name: linkedin, label: Your LinkedIn profile URL, type: string }
+      - { name: companyLinkedin, label: Company LinkedIn page URL, type: string }
       - { name: cvFile, label: CV (PDF; leave empty to hide all CV links), type: file, options: { media: files } }
       - { name: cvLabel, label: CV link text in the footer, type: string }
       - { name: location, label: Location (footer), type: string }

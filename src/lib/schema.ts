@@ -21,6 +21,7 @@ export const business = {
   description: SITE.tagline,
   logo: new URL('/images/defrance-product-partners-logo.png', SITE.url).href,
   founder: { '@id': `${SITE.url}/#person` },
+  sameAs: [SITE.companyLinkedin].filter(Boolean),
   areaServed: 'Worldwide',
   address: { '@type': 'PostalAddress', addressLocality: 'Nashville', addressRegion: 'TN', addressCountry: 'US' },
 };
