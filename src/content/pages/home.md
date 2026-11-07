@@ -10,7 +10,7 @@ eyebrow: Fractional product leadership · Nashville, Tennessee
 title: I build and optimize subscription, media and eCommerce businesses.
 subhead: The product, the funnel and the teams behind them. Fractional product
   leadership and fixed-fee diagnostics for subscription, streaming, digital
-  media, eCommerce and fiber companies.
+  media and eCommerce growth companies.
 proof:
   - label: Subscription
     figure: 200K+
