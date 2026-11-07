@@ -1,0 +1,21 @@
+name: Notify search engines (IndexNow)
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+concurrency:
+  group: indexnow
+  cancel-in-progress: true
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Wait for deploy, then ping IndexNow
+        env:
+          INDEXNOW_KEY: 207bb0ce0050f5b2621d00a6b3148883
+        run: sleep 90 && node scripts/indexnow.mjs

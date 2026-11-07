@@ -20,6 +20,10 @@ const schema = ld({
   publisher: { '@type': 'Organization', '@id': `${SITE.url}/#business`, name: SITE.name },
   url: new URL(Astro.url.pathname, SITE.url).href,
   about: [...d.industry, ...d.capability],
+  ...(d.published ? { datePublished: d.published.toISOString().slice(0, 10) } : {}),
+  ...((d.updated ?? d.published) ? { dateModified: (d.updated ?? d.published)!.toISOString().slice(0, 10) } : {}),
+  image: new URL('/images/og-default.png', SITE.url).href,
+  mainEntityOfPage: new URL(Astro.url.pathname, SITE.url).href,
 });
 ---
 <Base title={d.seoTitle} description={d.description} schema={schema} ogType="article">

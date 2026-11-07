@@ -18,6 +18,8 @@ glance:
   - { label: Result, value: "eCommerce conversion consistently 10–20% above goal; conversion rates doubled year over year" }
 ctaHeadline: Is your conversion rate stuck?
 ctaSecondary: { label: See the Audience and Monetization Diagnostic, href: /services/audience-monetization-diagnostic/ }
+published: 2026-11-04
+updated: 2026-11-04
 ---
 
 ## The challenge

@@ -22,6 +22,8 @@ const work = defineCollection({
     quote: z.object({ text: z.string(), attribution: z.string() }).optional(),
     ctaHeadline: z.string(),
     ctaSecondary: z.object({ label: z.string(), href: z.string() }).optional(),
+    published: z.coerce.date().optional(),
+    updated: z.coerce.date().optional(),
   }),
 });
 

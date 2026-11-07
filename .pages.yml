@@ -146,6 +146,8 @@ content:
       - { name: seoTitle, label: Browser tab and Google title, type: string }
       - { name: description, label: Google description, type: text }
       - { name: order, label: Sort order, type: number }
+      - { name: published, label: First published (date), type: date }
+      - { name: updated, label: Last meaningfully updated (date; tells Google and AI tools it's current), type: date }
       - { name: cardTitle, label: Card title, type: string }
       - { name: logo, label: Company logo (optional), type: image, options: { media: images } }
       - { name: logoAlt, label: Company name for the logo, type: string }

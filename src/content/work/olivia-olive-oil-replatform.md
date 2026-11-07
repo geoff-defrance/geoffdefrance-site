@@ -29,6 +29,8 @@ glance:
     value: 40+ production releases in six to eight weeks; 236 customer accounts and
       1,062 orders migrated with zero emails sent and zero misattributed orders
 ctaHeadline: Want your team to work this way?
+published: 2026-11-04
+updated: 2026-11-04
 ---
 ## The challenge
 

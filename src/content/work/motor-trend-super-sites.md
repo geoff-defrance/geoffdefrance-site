@@ -22,6 +22,8 @@ quote:
   attribution: Jeff Nasi, Senior Director, Digital Media Sales, Automotive Aftermarket, Motor Trend Group (Discovery)
 ctaHeadline: Too many sites, too little audience?
 ctaSecondary: { label: See the Audience and Monetization Diagnostic, href: /services/audience-monetization-diagnostic/ }
+published: 2026-11-04
+updated: 2026-11-04
 ---
 
 ## The challenge

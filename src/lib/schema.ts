@@ -6,11 +6,26 @@ export const person = {
   name: SITE.personName,
   url: `${SITE.url}/`,
   image: new URL(SITE.headshot, SITE.url).href,
-  jobTitle: 'Fractional Head of Product',
+  jobTitle: SITE.personTitle || 'Founder & Principal',
+  description: 'Product and technology executive with 20+ years building and fixing subscription, streaming, digital media and eCommerce businesses. Founder of ' + SITE.name + '.',
+  knowsAbout: [
+    'Product leadership', 'Fractional product management', 'Subscription businesses', 'SVOD and OTT streaming',
+    'Churn and retention', 'Subscription pricing and billing', 'eCommerce conversion optimization', 'A/B testing and experimentation',
+    'Digital media and publishing', 'Audience engagement and ad monetization', 'Build-vs-buy and platform strategy',
+    'Product discovery', 'Product organization design', 'AI-native software delivery',
+  ],
   sameAs: [SITE.linkedin],
   address: { '@type': 'PostalAddress', addressLocality: 'Nashville', addressRegion: 'TN', addressCountry: 'US' },
   worksFor: { '@id': `${SITE.url}/#business` },
-  alumniOf: { '@type': 'CollegeOrUniversity', name: 'San Francisco State University' },
+  alumniOf: [
+    { '@type': 'CollegeOrUniversity', name: 'San Francisco State University' },
+    { '@type': 'Organization', name: 'Uniti Group (Kinetic)' },
+    { '@type': 'Organization', name: 'FloSports' },
+    { '@type': 'Organization', name: 'Circle Media (Opry Entertainment Group)' },
+    { '@type': 'Organization', name: 'Motor Trend Group (Discovery)' },
+    { '@type': 'Organization', name: 'Kelley Blue Book' },
+    { '@type': 'Organization', name: 'Yahoo!' },
+  ],
 };
 
 export const business = {

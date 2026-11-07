@@ -18,6 +18,8 @@ glance:
   - { label: Result, value: "0 to 200K+ subscribers and $10M+ in new revenue in 18 months; churn down from 16% to 9%; NPS up from -31 to +19" }
 ctaHeadline: Building or fixing a subscription product?
 ctaSecondary: { label: See the Audience and Monetization Diagnostic, href: /services/audience-monetization-diagnostic/ }
+published: 2026-11-04
+updated: 2026-11-04
 ---
 
 ## The challenge
