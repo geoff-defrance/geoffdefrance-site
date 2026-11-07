@@ -49,15 +49,21 @@ const brandRest = SITE.name.split(' ').slice(1).join(' ');
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
+    <div class="topbar">
+      <div class="wrap topbar-inner">
+        <span><strong>{SITE.personName}</strong>{SITE.personTitle && <span class="topbar-title"> · {SITE.personTitle}</span>}</span>
+        <span class="topbar-links">
+          <a href={SITE.linkedin} rel="me noopener" target="_blank">LinkedIn</a>
+          {SITE.cvFile && <a href={SITE.cvFile} target="_blank" rel="noopener">CV</a>}
+        </span>
+      </div>
+    </div>
     <header class="site-header">
       <nav class="wrap site-nav" aria-label="Main">
-        <a class="brand" href="/" aria-label={`${SITE.name}, ${SITE.personName}, home`}>
+        <a class="brand" href="/" aria-label={`${SITE.name}, home`}>
           <span class="brand-mark" aria-hidden="true"></span>
           <span class="brand-name">{brandWord}</span>
-          <span class="brand-side">
-            {brandRest && <span class="brand-rest">{brandRest}</span>}
-            <span class="brand-person">{SITE.personName}{SITE.personTitle ? `, ${SITE.personTitle}` : ''}</span>
-          </span>
+          {brandRest && <span class="brand-side">{brandRest.split(' ').map((w, i) => <>{i > 0 && <br />}{w}</>)}</span>}
         </a>
         <div class="nav-links">
           {nav.map((n) => (
@@ -90,11 +96,15 @@ const brandRest = SITE.name.split(' ').slice(1).join(' ');
   .brand { display: flex; align-items: center; gap: 12px; color: var(--color-text); text-decoration: none; line-height: 1.15; }
   .brand-mark { flex: 0 0 auto; width: 12px; height: 12px; background: var(--color-accent); }
   .brand-name { font-family: var(--font-display); font-weight: 400; font-size: 30px; letter-spacing: -0.04em; line-height: 1; }
-  .brand-side { display: flex; flex-direction: column; gap: 2px; padding-left: 14px; border-left: 1px solid var(--color-rule-strong, #CFC8BA); }
-  .brand-rest { font-size: 15px; font-weight: 600; letter-spacing: -0.005em; }
-  .brand-person { font-size: 13px; color: var(--color-text-muted); }
+  .brand-side { padding-left: 14px; border-left: 1px solid #CFC8BA; font-size: 15px; font-weight: 500; line-height: 1.1; color: #4B4943; }
+  .topbar { background: var(--color-bg-alt); font-size: 13px; color: var(--color-text-muted); }
+  .topbar-inner { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding-top: 7px; padding-bottom: 7px; }
+  .topbar strong { color: var(--color-text); font-weight: 600; }
+  .topbar-links { display: flex; gap: 18px; }
+  .topbar-links a { color: var(--color-text-muted); text-decoration: none; }
+  .topbar-links a:hover { color: var(--color-accent); text-decoration: underline; }
   .brand:hover .brand-name { color: var(--color-accent); }
-  @media (max-width: 420px) { .brand-name { font-size: 26px; } .brand-side { padding-left: 10px; } .brand { gap: 10px; } }
+  @media (max-width: 420px) { .brand-name { font-size: 26px; } .brand-side { padding-left: 10px; font-size: 14px; } .brand { gap: 10px; } .topbar-links { display: none; } }
   .nav-links { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 28px; font-size: 16px; }
   .nav-links a:not(.btn) { color: var(--color-text); text-decoration: none; }
   .nav-links a:not(.btn):hover, .nav-links a[aria-current='page'] { color: var(--color-accent); text-decoration: underline; }
